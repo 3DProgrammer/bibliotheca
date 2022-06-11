@@ -7,3 +7,6 @@ target_include_directories(bibliotheca PRIVATE ${BIBLIOTHECA_INCLUDE_DIRS})
 add_executable(test test.cpp)
 target_link_libraries(test bibliotheca)
 target_include_directories(test PRIVATE ${BIBLIOTHECA_INCLUDE_DIRS})
+add_custom_target(doc
+        COMMAND doxygen
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})

@@ -57,6 +57,19 @@ namespace bibliotheca {
          * @return The spelling of the noun.
          */
         std::string noun(Case nounCase, Number number);
+
+        std::string getEnglish() override; //!<Returns a list of English translations, in the singular.
+        std::string getLatin() override; //!<Returns the nominative singular, genitive singular, and gender, in Latin.
+        /*!
+         * Constructor for noun.
+         * @param _nomSing The nominative singular form of the noun.
+         * @param _genSing The genitive singular form of the noun.
+         * @param _gender The grammatical gender of the noun.
+         * @param _english The English translations of the noun.
+         * @param _declension The declension of the noun.
+         */
+        Noun(const std::string &_nomSing, const std::string &_genSing, Gender _gender, const Translations &_english,
+             int _declension);
     };
 }
 #endif //BIBLIOTHECA_WORD_H

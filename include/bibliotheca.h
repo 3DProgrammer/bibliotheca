@@ -1,9 +1,8 @@
 #ifndef BIBLIOTHECA_BIBLIOTHECA_H
 #define BIBLIOTHECA_BIBLIOTHECA_H
+#define BIBLIOTHECA_MAJOR_VERSION 0
+#define BIBLIOTHECA_MINOR_VERSION 1
 
-namespace bibliotheca {
-    const int MAJOR_VERSION=0;
-    const int MINOR_VERSION=0;
-}
+#include "word.h"
 
 #endif //BIBLIOTHECA_BIBLIOTHECA_H

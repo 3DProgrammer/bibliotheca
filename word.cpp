@@ -16,7 +16,7 @@ std::map<std::pair<bibliotheca::Case, bibliotheca::Number>, std::string> endings
         {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, ""},   {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "em"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "is"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "i"},  {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "e"},
                 {{bibliotheca::Case::nom, bibliotheca::Number::plural}, "es"}, {{bibliotheca::Case::acc, bibliotheca::Number::plural}, "es"}, {{bibliotheca::Case::gen, bibliotheca::Number::plural}, "um"},   {{bibliotheca::Case::dat, bibliotheca::Number::plural}, "ibus"}, {{bibliotheca::Case::abl, bibliotheca::Number::plural}, "ibus"}},
 
-        {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, "us"}, {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "um"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "us"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "ui"}, {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "u"},
+        {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, "us"}, {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "um"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "us"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "ui"}, {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "u"}, //TODO: 4th dec neuter.
                 {{bibliotheca::Case::nom, bibliotheca::Number::plural}, "us"}, {{bibliotheca::Case::acc, bibliotheca::Number::plural}, "us"}, {{bibliotheca::Case::gen, bibliotheca::Number::plural}, "uum"},  {{bibliotheca::Case::dat, bibliotheca::Number::plural}, "ibus"}, {{bibliotheca::Case::abl, bibliotheca::Number::plural}, "ibus"}},
 
         {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, "es"}, {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "em"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "ei"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "ei"}, {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "e"},
@@ -24,7 +24,6 @@ std::map<std::pair<bibliotheca::Case, bibliotheca::Number>, std::string> endings
 };
 
 std::string bibliotheca::Noun::noun(bibliotheca::Case nounCase, bibliotheca::Number number) {
-    //TODO: 3rd declension.
     if (nounCase == Case::nom && number == Number::singular) {
         return spelling[0];
     }
@@ -32,9 +31,25 @@ std::string bibliotheca::Noun::noun(bibliotheca::Case nounCase, bibliotheca::Num
         (nounCase == Case::nom || nounCase == Case::acc || nounCase == Case::voc)) {
         return stem + "a";
     }
+    if (gender==Gender::n && number == Number::singular && (nounCase == Case::acc || nounCase == Case::voc)&&declension==3) {
+        return spelling[0];
+    }
+    if (gender==Gender::n && number == Number::singular && (nounCase == Case::acc || nounCase == Case::voc)) {
+        return stem+endings[declension-1][{Case::acc, Number::singular}];
+    }
     if (nounCase == Case::voc) {
+        if (number==Number::plural) {
+            return noun(Case::nom, Number::plural);
+        }
+        if (declension == 2 && spelling[0][spelling[0].size() - 3] == 'i' &&
+            spelling[0][spelling[0].size() - 2] == 'u'&&spelling[0][spelling[0].size() - 1] == 's') {
+            std::string returnValue = spelling[0];
+            returnValue.resize(returnValue.size() - 2);
+            returnValue[returnValue.size() - 1] = 'i';
+            return returnValue;
+        }
         if (declension == 2 && spelling[0][spelling[0].size() - 2] == 'u' &&
-            spelling[0][spelling[0].size() - 1] == 's') { //TODO: Handle proper nouns ending in -ius.
+            spelling[0][spelling[0].size() - 1] == 's') {
             std::string returnValue = spelling[0];
             returnValue.resize(returnValue.size() - 1);
             returnValue[returnValue.size() - 1] = 'e';

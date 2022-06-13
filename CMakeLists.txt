@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
 project(bibliotheca)
-set(BIBLIOTHECA_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
+set(BIBLIOTHECA_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include PARENT_SCOPE)
 set(CMAKE_CXX_STANDARD 20)
 add_library(bibliotheca bibliotheca.cpp word.cpp)
 target_include_directories(bibliotheca PRIVATE ${BIBLIOTHECA_INCLUDE_DIRS})

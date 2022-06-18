@@ -98,5 +98,41 @@ namespace bibliotheca {
         Noun(const std::string &_nomSing, const std::string &_genSing, Gender _gender, const Translations &_english,
              int _declension);
     };
+    class Verb : public Word {
+    public:
+        PrincipalParts<4> spelling; //!<The active indicative 1st person singular present, active infinitive present, active indicative 1st person singular perfect, masculine singular perfect passive participle.
+        Translations english; //!<The english translation of the verb.
+        int conjugation; //!<The conjugation of the verb
+        /*!
+         * Conjugates a verb.
+         * @param person The person of the verb (1st, 2nd or 3rd).
+         * @param number The number of the verb (singular or plural).
+         * @param tense The tense of the verb.
+         * @param mood The mood of the verb (active or passive).
+         * @param voice The voice of the verb.
+         * @return The spelling of the verb.
+         */
+        std::string verb(int person, Number number, Tense tense, Mood mood, Voice voice);
+        /*!
+         * Conjugates a verb as a participle.
+         * @param participleCase The case of the participle.
+         * @param gender The grammatical gender of the participle.
+         * @param number The number of the participle (singular or plural).
+         * @param mood The mood of the participle (active or passive).
+         * @param degree The degree of the participle.
+         * @return The spelling of the participle.
+         */
+        std::string participle(Case participleCase, Gender gender, Number number, Mood mood, Degree degree);
+        /*!
+         * Constructor for a regular verb.
+         * @param principalParts
+         */
+        Verb(PrincipalParts<4> principalParts);
+        /*!
+         * Constructor for a deponent verb.
+         * @param principalParts
+         */
+        Verb(PrincipalParts<3> principalParts);
+    };
 }
 #endif //BIBLIOTHECA_WORD_H

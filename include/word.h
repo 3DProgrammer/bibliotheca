@@ -26,6 +26,33 @@ namespace bibliotheca {
         singular,
         plural
     };
+    /*! Enum representing verb tense. */
+    enum class Tense {
+        pluperfect,
+        perfect,
+        imperfect,
+        present,
+        future,
+        futureperfect
+    };
+    /*! Enum representing verb voice. */
+    enum class Voice {
+        active,
+        passive
+    };
+    /*! Enum representing verb mood. */
+    enum class Mood {
+        indicative,
+        imperative,
+        infinitive,
+        subjunctive
+    };
+    /*! Enum representing adjective degree. */
+    enum class Degree {
+        positive,
+        comparative,
+        superlative
+    };
     template<size_t N>
     using PrincipalParts = std::array<std::string, N>;
     typedef std::vector<std::string> Translations;

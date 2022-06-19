@@ -97,11 +97,42 @@ bibliotheca::Verb::Verb(bibliotheca::PrincipalParts<4> principalParts, Translati
         conjugation=4;
     }
     if (vowel=='e') {
-        if (principalParts[1][principalParts[1].size()-2]=='e') {
+        if (principalParts[0][principalParts[0].size()-2]=='e') {
             conjugation=2;
         }
         else {
-            conjugation=1;
+            conjugation=3;
         }
     }
+}
+
+std::string bibliotheca::Verb::getLatin() {
+    return spelling[0]+", "+spelling[1]+", "+spelling[2]+", "+spelling[3];
+}
+
+std::string bibliotheca::Verb::getEnglish() {
+    std::string result;
+    for (int i = 0; i < english.size() - 1; i++) {
+        result += english[i];
+        result += ", ";
+    }
+    return result + english[english.size() - 1];
+}
+
+bibliotheca::Verb::Verb(bibliotheca::PrincipalParts<3> principalParts, bibliotheca::Translations _english) {
+  //TODO: Implement.
+}
+
+std::string
+bibliotheca::Verb::participle(bibliotheca::Case participleCase, bibliotheca::Gender gender, bibliotheca::Number number,
+                              bibliotheca::Mood mood, bibliotheca::Degree degree) {
+    //TODO: Implement
+    return "";
+}
+
+std::string
+bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Tense tense, bibliotheca::Mood mood,
+                        bibliotheca::Voice voice) {
+    //TODO: Implement
+    return "";
 }

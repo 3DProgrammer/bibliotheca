@@ -104,6 +104,8 @@ namespace bibliotheca {
         Translations english; //!<The english translation of the verb.
         int conjugation; //!<The conjugation of the verb
         bool deponent;
+        std::string getEnglish() override;
+        std::string getLatin() override;
         /*!
          * Conjugates a verb.
          * @param person The person of the verb (1st, 2nd or 3rd).

@@ -84,3 +84,24 @@ bibliotheca::Noun::Noun(const std::string &_nomSing, const std::string &_genSing
     stem=_genSing;
     stem.resize(stem.size()-endings[declension-1][{Case::gen, Number::singular}].size());
 }
+
+bibliotheca::Verb::Verb(bibliotheca::PrincipalParts<4> principalParts, Translations _english) {
+    deponent=false;
+    english=_english;
+    spelling=principalParts;
+    char vowel = principalParts[1][principalParts[1].size()-3];
+    if (vowel=='a') {
+        conjugation=1;
+    }
+    if (vowel=='i') {
+        conjugation=4;
+    }
+    if (vowel=='e') {
+        if (principalParts[1][principalParts[1].size()-2]=='e') {
+            conjugation=2;
+        }
+        else {
+            conjugation=1;
+        }
+    }
+}

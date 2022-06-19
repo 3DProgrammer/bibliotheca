@@ -103,6 +103,7 @@ namespace bibliotheca {
         PrincipalParts<4> spelling; //!<The active indicative 1st person singular present, active infinitive present, active indicative 1st person singular perfect, masculine singular perfect passive participle.
         Translations english; //!<The english translation of the verb.
         int conjugation; //!<The conjugation of the verb
+        bool deponent;
         /*!
          * Conjugates a verb.
          * @param person The person of the verb (1st, 2nd or 3rd).
@@ -126,13 +127,15 @@ namespace bibliotheca {
         /*!
          * Constructor for a regular verb.
          * @param principalParts
+         * @param _english
          */
-        Verb(PrincipalParts<4> principalParts);
+        Verb(PrincipalParts<4> principalParts, Translations _english);
         /*!
          * Constructor for a deponent verb.
          * @param principalParts
+         * @param _english
          */
-        Verb(PrincipalParts<3> principalParts);
+        Verb(PrincipalParts<3> principalParts, Translations _english);
     };
 }
 #endif //BIBLIOTHECA_WORD_H

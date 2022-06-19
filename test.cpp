@@ -41,6 +41,10 @@ int main() {
     verbs.push_back(bibliotheca::Verb({"habeo", "habere", "habui", "habitum"}, {"have", "own"}));
     verbs.push_back(bibliotheca::Verb({"cognosco", "cognoscere", "cognovi", "cognitus"}, {"know", "understand"}));
     verbs.push_back(bibliotheca::Verb({"audio", "audire", "audivi", "auditus"},{"hear"}));
+    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"ingredior","ingredi","ingressus"}),{"enter"}));
+    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"miror","mirari","miratus"}),{"admire"}));
+    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"vereor","vereri","veritus"}),{"fear"}));
+    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"partior","partiri","partitus"}),{"share"}));
     for (auto verb: verbs) {
         std::cout << verb.getLatin() << " is conjugation " << verb.conjugation << std::endl;
     }

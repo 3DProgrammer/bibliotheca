@@ -120,7 +120,29 @@ std::string bibliotheca::Verb::getEnglish() {
 }
 
 bibliotheca::Verb::Verb(bibliotheca::PrincipalParts<3> principalParts, bibliotheca::Translations _english) {
-  //TODO: Implement.
+    deponent=true;
+    english=_english;
+    spelling[0]=principalParts[0];
+    spelling[1]=principalParts[1];
+    spelling[2]=principalParts[2];
+    spelling[3]="";
+    if (principalParts[1][principalParts[1].size()-2]=='r') {
+        char vowel=principalParts[1][principalParts[1].size()-3];
+        switch (vowel) {
+            case 'a':
+                conjugation=1;
+                break;
+            case 'e':
+                conjugation=2;
+                break;
+            case 'i':
+                conjugation=4;
+                break;
+        }
+    }
+    else {
+        conjugation=3;
+    }
 }
 
 std::string

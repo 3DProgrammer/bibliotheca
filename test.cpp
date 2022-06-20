@@ -87,5 +87,18 @@ int main() {
         displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::active, bibliotheca::Tense::future, "   ", " ", verb);
         std::cout << "  Future perfect:" << std::endl;
         displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::active, bibliotheca::Tense::futureperfect, "   ", " ", verb);
+        std::cout << " Passive:" << std::endl;
+        std::cout << "  Pluperfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::passive, bibliotheca::Tense::pluperfect, "   ", " ", verb);
+        std::cout << "  Perfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::passive, bibliotheca::Tense::perfect, "   ", " ", verb);
+        std::cout << "  Imperfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::passive, bibliotheca::Tense::imperfect, "   ", " ", verb);
+        std::cout << "  Present:" << std::endl;
+        displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::passive, bibliotheca::Tense::present, "   ", " ", verb);
+        std::cout << "  Future:" << std::endl;
+        displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::passive, bibliotheca::Tense::future, "   ", " ", verb);
+        std::cout << "  Future perfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::passive, bibliotheca::Tense::futureperfect, "   ", " ", verb);
     }
 }

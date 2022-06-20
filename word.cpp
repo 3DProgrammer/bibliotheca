@@ -5,7 +5,144 @@
 #include "word.h"
 #include <bibliotheca.h>
 #include <map>
-
+std::string imperfectEsse(bibliotheca::Number number, int person) {
+    if (number == bibliotheca::Number::singular) {
+        switch (person) {
+            case 1:
+                return "eram";
+            case 2:
+                return "eras";
+            case 3:
+                return "erat";
+        }
+    }
+    else if (number == bibliotheca::Number::plural) {
+        switch (person) {
+            case 1:
+                return "eramus";
+            case 2:
+                return "eratis";
+            case 3:
+                return "erant";
+        }
+    }
+    return "";
+}
+std::string perfectEndings(bibliotheca::Number number, int person) {
+    if (number == bibliotheca::Number::singular) {
+        switch (person) {
+            case 1:
+                return "i";
+            case 2:
+                return "isti";
+            case 3:
+                return "it";
+        }
+    }
+    else if (number == bibliotheca::Number::plural) {
+        switch (person) {
+            case 1:
+                return "imus";
+            case 2:
+                return "istis";
+            case 3:
+                return "erunt";
+        }
+    }
+    return "";
+}
+std::string standardVerbEndings(bibliotheca::Number number, int person, bool o) {
+    if (number == bibliotheca::Number::singular) {
+        switch (person) {
+            case 1:
+                return o ? "o" : "m";
+            case 2:
+                return "s";
+            case 3:
+                return "t";
+        }
+    }
+    else if (number == bibliotheca::Number::plural) {
+        switch (person) {
+            case 1:
+                return "mus";
+            case 2:
+                return "tis";
+            case 3:
+                return "nt";
+        }
+    }
+    return "";
+}
+std::string firstSecondFutureEndings(bibliotheca::Number number, int person) {
+    if (number == bibliotheca::Number::singular) {
+        switch (person) {
+            case 1:
+                return "bo";
+            case 2:
+                return "bis";
+            case 3:
+                return "bit";
+        }
+    }
+    else if (number == bibliotheca::Number::plural) {
+        switch (person) {
+            case 1:
+                return "bimus";
+            case 2:
+                return "bitis";
+            case 3:
+                return "bunt";
+        }
+    }
+    return "";
+}
+std::string thirdFourthFutureEndings(bibliotheca::Number number, int person) {
+    if (number == bibliotheca::Number::singular) {
+        switch (person) {
+            case 1:
+                return "am";
+            case 2:
+                return "et";
+            case 3:
+                return "et";
+        }
+    }
+    else if (number == bibliotheca::Number::plural) {
+        switch (person) {
+            case 1:
+                return "emus";
+            case 2:
+                return "etis";
+            case 3:
+                return "ent";
+        }
+    }
+    return "";
+}
+std::string futurePerfectEndings(bibliotheca::Number number, int person) {
+    if (number == bibliotheca::Number::singular) {
+        switch (person) {
+            case 1:
+                return "ero";
+            case 2:
+                return "eris";
+            case 3:
+                return "erit";
+        }
+    }
+    else if (number == bibliotheca::Number::plural) {
+        switch (person) {
+            case 1:
+                return "erimus";
+            case 2:
+                return "eritis";
+            case 3:
+                return "erint";
+        }
+    }
+    return "";
+}
 std::map<std::pair<bibliotheca::Case, bibliotheca::Number>, std::string> endings[5] = {
         //TODO: Macrons.
         {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, "a"}, {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "am"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "ae"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "ae"}, {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "a"}, {{bibliotheca::Case::nom, bibliotheca::Number::plural}, "ae"}, {{bibliotheca::Case::acc, bibliotheca::Number::plural}, "as"}, {{bibliotheca::Case::gen, bibliotheca::Number::plural}, "arum"}, {{bibliotheca::Case::dat, bibliotheca::Number::plural}, "is"}, {{bibliotheca::Case::abl, bibliotheca::Number::plural}, "is"}},
@@ -160,35 +297,47 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
                         bibliotheca::Voice voice) {
     if (deponent) {
         if (mood == Mood::indicative) {
+            if (tense == Tense::pluperfect) {
+            }
+            else if (tense == Tense::perfect) {
+            }
+            else if (tense == Tense::imperfect) {
+            }
+            else if (tense == Tense::present) {
+            }
+            else if (tense == Tense::future) {
+            }
+            else if (tense == Tense::futureperfect) {
+            }
         }
         else if (mood == Mood::imperative) {
-            if (conjugation==3) {
-                std::string result=spelling[1];
-                result.resize(result.size()-1);
-                result+=number==Number::singular?"ere":"imini";
+            if (conjugation == 3) {
+                std::string result = spelling[1];
+                result.resize(result.size() - 1);
+                result += number == Number::singular ? "ere" : "imini";
                 return result;
             }
             else {
-                std::string result=spelling[1];
-                result.resize(result.size()-2);
-                result+=number==Number::singular?"re":"mini";
+                std::string result = spelling[1];
+                result.resize(result.size() - 2);
+                result += number == Number::singular ? "re" : "mini";
                 return result;
             }
         }
         else if (mood == Mood::infinitive) {
-            if (tense==Tense::present) {
+            if (tense == Tense::present) {
                 return spelling[1];
             }
-            else if (tense==Tense::future) {
+            else if (tense == Tense::future) {
                 std::string result = spelling[2];
-                result.resize(result.size()-5);
-                result+="m iri";
+                result.resize(result.size() - 5);
+                result += "m iri";
                 return result;
             }
-            else if (tense==Tense::perfect) {
+            else if (tense == Tense::perfect) {
                 std::string result = spelling[2];
-                result.resize(result.size()-3);
-                result+="esse";
+                result.resize(result.size() - 3);
+                result += "esse";
                 return result;
             }
         }
@@ -198,6 +347,56 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
     else {
         if (voice == Voice::active) {
             if (mood == Mood::indicative) {
+                if (tense == Tense::pluperfect) {
+                    std::string stem = spelling[2];
+                    stem.resize(stem.size() - 1);
+                    return stem + imperfectEsse(number, person);
+                }
+                else if (tense == Tense::perfect) {
+                    std::string stem = spelling[2];
+                    stem.resize(stem.size() - 1);
+                    return stem + perfectEndings(number, person);
+                }
+                else if (tense == Tense::imperfect) {
+                    std::string stem = spelling[1];
+                    stem.resize(stem.size() - 2);
+                    return stem + "ba" + standardVerbEndings(number, person, false);
+                }
+                else if (tense == Tense::present) {
+                    if (number == Number::singular && person == 1) {
+                        return spelling[0];
+                    }
+                    std::string stem = spelling[1];
+                    stem.resize(stem.size() - 2);
+                    if (conjugation == 3) {
+                        stem.resize(stem.size() - 1);
+                    }
+                    if (conjugation == 3 && !(number == Number::plural && person == 3)) {
+                        stem += "i";
+                    }
+                    if (conjugation==4&&number==Number::plural&&person==3) {
+                        stem=stem+"i";
+                    }
+                    return stem + standardVerbEndings(number, person, true);
+                }
+                else if (tense == Tense::future) {
+                    std::string stem = spelling[1];
+                    stem.resize(stem.size() - 2);
+                    if (conjugation == 3) {
+                        stem.resize(stem.size() - 1);
+                    }
+                    if (conjugation < 3) {
+                        return stem + firstSecondFutureEndings(number, person);
+                    }
+                    else {
+                        return stem + thirdFourthFutureEndings(number, person);
+                    }
+                }
+                else if (tense == Tense::futureperfect) {
+                    std::string stem = spelling[2];
+                    stem.resize(stem.size()-1);
+                    return stem+ futurePerfectEndings(number,person);
+                }
             }
             else if (mood == Mood::imperative) {
                 std::string result = spelling[1];
@@ -212,17 +411,17 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
                 return result;
             }
             else if (mood == Mood::infinitive) {
-                if (tense==Tense::present) {
+                if (tense == Tense::present) {
                     return spelling[1];
                 }
-                else if (tense==Tense::future) {
+                else if (tense == Tense::future) {
                     std::string result = spelling[3];
-                    result.resize(result.size()-1);
-                    result+="rus esse";
+                    result.resize(result.size() - 1);
+                    result += "rus esse";
                     return result;
                 }
-                else if (tense==Tense::perfect) {
-                    return spelling[2]+"sse";
+                else if (tense == Tense::perfect) {
+                    return spelling[2] + "sse";
                 }
             }
             else if (mood == Mood::subjunctive) {
@@ -230,6 +429,18 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
         }
         else if (voice == Voice::passive) {
             if (mood == Mood::indicative) {
+                if (tense == Tense::pluperfect) {
+                }
+                else if (tense == Tense::perfect) {
+                }
+                else if (tense == Tense::imperfect) {
+                }
+                else if (tense == Tense::present) {
+                }
+                else if (tense == Tense::future) {
+                }
+                else if (tense == Tense::futureperfect) {
+                }
             }
             else if (mood == Mood::imperative) {
                 if (number == Number::singular) {
@@ -246,27 +457,27 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
                 }
             }
             else if (mood == Mood::infinitive) {
-                if (tense==Tense::present) {
-                    if (conjugation==3) {
+                if (tense == Tense::present) {
+                    if (conjugation == 3) {
                         std::string result = spelling[1];
-                        result.resize(result.size()-3);
-                        result=result+'i';
+                        result.resize(result.size() - 3);
+                        result = result + 'i';
                         return result;
                     }
                     else {
                         std::string result = spelling[1];
-                        result[result.size()-1]='i';
+                        result[result.size() - 1] = 'i';
                         return result;
                     }
                 }
-                else if (tense==Tense::future) {
+                else if (tense == Tense::future) {
                     std::string result = spelling[3];
-                    result.resize(result.size()-1);
-                    result+="m iri";
+                    result.resize(result.size() - 1);
+                    result += "m iri";
                     return result;
                 }
-                else if (tense==Tense::perfect) {
-                    return spelling[3]+" esse";
+                else if (tense == Tense::perfect) {
+                    return spelling[3] + " esse";
                 }
             }
             else if (mood == Mood::subjunctive) {

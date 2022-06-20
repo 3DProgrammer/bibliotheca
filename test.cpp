@@ -2,7 +2,16 @@
 #include <iostream>
 #include <map>
 
-
+void displayVerb(bibliotheca::Mood mood, bibliotheca::Voice voice, bibliotheca::Tense tense, const std::string &starter, const std::string &indent, bibliotheca::Verb &verb) {
+    std::cout << starter << "Singular:" << std::endl;
+    std::cout << starter << indent << "1st: " << verb.verb(1, bibliotheca::Number::singular, tense, mood, voice)<<std::endl;
+    std::cout << starter << indent << "2nd: " << verb.verb(2, bibliotheca::Number::singular, tense, mood, voice)<<std::endl;
+    std::cout << starter << indent << "3rd: " << verb.verb(3, bibliotheca::Number::singular, tense, mood, voice)<<std::endl;
+    std::cout << starter << "Plural:" << std::endl;
+    std::cout << starter << indent << "1st: " << verb.verb(1, bibliotheca::Number::plural, tense, mood, voice)<<std::endl;
+    std::cout << starter << indent << "2nd: " << verb.verb(2, bibliotheca::Number::plural, tense, mood, voice)<<std::endl;
+    std::cout << starter << indent << "3rd: " << verb.verb(3, bibliotheca::Number::plural, tense, mood, voice)<<std::endl;
+}
 int main() {
     std::map<bibliotheca::Case, std::string> cases = {{bibliotheca::Case::nom, "nominative"},
                                                       {bibliotheca::Case::acc, "accusative"},
@@ -48,14 +57,14 @@ int main() {
     for (auto verb: verbs) {
         std::cout << "--------------------------------------------------" << std::endl;
         std::cout << verb.getLatin() << " is conjugation " << verb.conjugation << std::endl;
-        std::cout << "Imperatives:" << std::endl;
+        std::cout << "Imperative:" << std::endl;
         std::cout << " Active:" << std::endl;
         std::cout << "  Singular: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::present, bibliotheca::Mood::imperative, bibliotheca::Voice::active) << std::endl;
         std::cout << "  Plural: " << verb.verb(1, bibliotheca::Number::plural, bibliotheca::Tense::present, bibliotheca::Mood::imperative, bibliotheca::Voice::active) << std::endl;
         std::cout << " Passive:" << std::endl;
         std::cout << "  Singular: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::present, bibliotheca::Mood::imperative, bibliotheca::Voice::passive) << std::endl;
         std::cout << "  Plural: " << verb.verb(1, bibliotheca::Number::plural, bibliotheca::Tense::present, bibliotheca::Mood::imperative, bibliotheca::Voice::passive) << std::endl;
-        std::cout << "Infinitives:" << std::endl;
+        std::cout << "Infinitive:" << std::endl;
         std::cout << " Active:" << std::endl;
         std::cout << "  Present: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::present, bibliotheca::Mood::infinitive, bibliotheca::Voice::active) << std::endl;
         std::cout << "  Future: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::future, bibliotheca::Mood::infinitive, bibliotheca::Voice::active) << std::endl;
@@ -64,5 +73,19 @@ int main() {
         std::cout << "  Present: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::present, bibliotheca::Mood::infinitive, bibliotheca::Voice::passive) << std::endl;
         std::cout << "  Future: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::future, bibliotheca::Mood::infinitive, bibliotheca::Voice::passive) << std::endl;
         std::cout << "  Perfect: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::perfect, bibliotheca::Mood::infinitive, bibliotheca::Voice::passive) << std::endl;
+        std::cout << "Indicative:" << std::endl;
+        std::cout << " Active:" << std::endl;
+        std::cout << "  Pluperfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::active, bibliotheca::Tense::pluperfect, "   ", " ", verb);
+        std::cout << "  Perfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::active, bibliotheca::Tense::perfect, "   ", " ", verb);
+        std::cout << "  Imperfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::active, bibliotheca::Tense::imperfect, "   ", " ", verb);
+        std::cout << "  Present:" << std::endl;
+        displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::active, bibliotheca::Tense::present, "   ", " ", verb);
+        std::cout << "  Future:" << std::endl;
+        displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::active, bibliotheca::Tense::future, "   ", " ", verb);
+        std::cout << "  Future perfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::active, bibliotheca::Tense::futureperfect, "   ", " ", verb);
     }
 }

@@ -560,11 +560,19 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
             if (tense == Tense::pluperfect) {
                 std::string stem=spelling[2];
                 stem.resize(stem.size()-4);
+                if (number==Number::plural) {
+                    stem.resize(stem.size()-2);
+                    stem+="i";
+                }
                 return stem+" "+ imperfectSubjunctiveEsse(number,person);
             }
             else if (tense == Tense::perfect) {
                 std::string stem=spelling[2];
                 stem.resize(stem.size()-4);
+                if (number==Number::plural) {
+                    stem.resize(stem.size()-2);
+                    stem+="i";
+                }
                 return stem+" "+ subjunctiveEsse(number,person);
             }
             else if (tense == Tense::imperfect) {
@@ -832,10 +840,20 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
             }
             else if (mood == Mood::subjunctive) {
                 if (tense == Tense::pluperfect) {
-                    return spelling[3]+" "+ imperfectSubjunctiveEsse(number,person);
+                    std::string stem=spelling[3];
+                    if (number==Number::plural) {
+                        stem.resize(stem.size()-2);
+                        stem+="i";
+                    }
+                    return stem+" "+ imperfectSubjunctiveEsse(number,person);
                 }
                 else if (tense == Tense::perfect) {
-                    return spelling[3]+" "+ subjunctiveEsse(number,person);
+                    std::string stem=spelling[3];
+                    if (number==Number::plural) {
+                        stem.resize(stem.size()-2);
+                        stem+="i";
+                    }
+                    return stem+" "+ subjunctiveEsse(number,person);
                 }
                 else if (tense == Tense::imperfect) {
                     return spelling[1]+ passiveEndings(number,person);

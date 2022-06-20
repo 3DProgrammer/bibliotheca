@@ -176,6 +176,21 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
             }
         }
         else if (mood == Mood::infinitive) {
+            if (tense==Tense::present) {
+                return spelling[1];
+            }
+            else if (tense==Tense::future) {
+                std::string result = spelling[2];
+                result.resize(result.size()-5);
+                result+="m iri";
+                return result;
+            }
+            else if (tense==Tense::perfect) {
+                std::string result = spelling[2];
+                result.resize(result.size()-3);
+                result+="esse";
+                return result;
+            }
         }
         else if (mood == Mood::subjunctive) {
         }
@@ -197,6 +212,18 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
                 return result;
             }
             else if (mood == Mood::infinitive) {
+                if (tense==Tense::present) {
+                    return spelling[1];
+                }
+                else if (tense==Tense::future) {
+                    std::string result = spelling[3];
+                    result.resize(result.size()-1);
+                    result+="rus esse";
+                    return result;
+                }
+                else if (tense==Tense::perfect) {
+                    return spelling[2]+"sse";
+                }
             }
             else if (mood == Mood::subjunctive) {
             }
@@ -219,6 +246,28 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
                 }
             }
             else if (mood == Mood::infinitive) {
+                if (tense==Tense::present) {
+                    if (conjugation==3) {
+                        std::string result = spelling[1];
+                        result.resize(result.size()-3);
+                        result=result+'i';
+                        return result;
+                    }
+                    else {
+                        std::string result = spelling[1];
+                        result[result.size()-1]='i';
+                        return result;
+                    }
+                }
+                else if (tense==Tense::future) {
+                    std::string result = spelling[3];
+                    result.resize(result.size()-1);
+                    result+="m iri";
+                    return result;
+                }
+                else if (tense==Tense::perfect) {
+                    return spelling[3]+" esse";
+                }
             }
             else if (mood == Mood::subjunctive) {
             }

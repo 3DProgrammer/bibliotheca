@@ -41,12 +41,12 @@ int main() {
     verbs.push_back(bibliotheca::Verb({"habeo", "habere", "habui", "habitum"}, {"have", "own"}));
     verbs.push_back(bibliotheca::Verb({"cognosco", "cognoscere", "cognovi", "cognitus"}, {"know", "understand"}));
     verbs.push_back(bibliotheca::Verb({"audio", "audire", "audivi", "auditus"}, {"hear"}));
-    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"ingredior", "ingredi", "ingressus"}), {"enter"}));
-    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"miror", "mirari", "miratus"}), {"admire"}));
-    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"vereor", "vereri", "veritus"}), {"fear"}));
-    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"partior", "partiri", "partitus"}), {"share"}));
+    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"ingredior", "ingredi", "ingressus sum"}), {"enter"}));
+    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"miror", "mirari", "miratus sum"}), {"admire"}));
+    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"vereor", "vereri", "veritus sum"}), {"fear"}));
+    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"partior", "partiri", "partitus sum"}), {"share"}));
     for (auto verb: verbs) {
-        std::cout<<"--------------------------------------------------"<<std::endl;
+        std::cout << "--------------------------------------------------" << std::endl;
         std::cout << verb.getLatin() << " is conjugation " << verb.conjugation << std::endl;
         std::cout << "Imperatives:" << std::endl;
         std::cout << " Active:" << std::endl;
@@ -55,5 +55,14 @@ int main() {
         std::cout << " Passive:" << std::endl;
         std::cout << "  Singular: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::present, bibliotheca::Mood::imperative, bibliotheca::Voice::passive) << std::endl;
         std::cout << "  Plural: " << verb.verb(1, bibliotheca::Number::plural, bibliotheca::Tense::present, bibliotheca::Mood::imperative, bibliotheca::Voice::passive) << std::endl;
+        std::cout << "Infinitives:" << std::endl;
+        std::cout << " Active:" << std::endl;
+        std::cout << "  Present: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::present, bibliotheca::Mood::infinitive, bibliotheca::Voice::active) << std::endl;
+        std::cout << "  Future: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::future, bibliotheca::Mood::infinitive, bibliotheca::Voice::active) << std::endl;
+        std::cout << "  Perfect: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::perfect, bibliotheca::Mood::infinitive, bibliotheca::Voice::active) << std::endl;
+        std::cout << " Passive:" << std::endl;
+        std::cout << "  Present: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::present, bibliotheca::Mood::infinitive, bibliotheca::Voice::passive) << std::endl;
+        std::cout << "  Future: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::future, bibliotheca::Mood::infinitive, bibliotheca::Voice::passive) << std::endl;
+        std::cout << "  Perfect: " << verb.verb(1, bibliotheca::Number::singular, bibliotheca::Tense::perfect, bibliotheca::Mood::infinitive, bibliotheca::Voice::passive) << std::endl;
     }
 }

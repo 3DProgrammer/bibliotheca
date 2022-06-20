@@ -100,5 +100,24 @@ int main() {
         displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::passive, bibliotheca::Tense::future, "   ", " ", verb);
         std::cout << "  Future perfect:" << std::endl;
         displayVerb(bibliotheca::Mood::indicative, bibliotheca::Voice::passive, bibliotheca::Tense::futureperfect, "   ", " ", verb);
+        std::cout << "Subjunctive:" << std::endl;
+        std::cout << " Active:" << std::endl;
+        std::cout << "  Pluperfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::subjunctive, bibliotheca::Voice::active, bibliotheca::Tense::pluperfect, "   ", " ", verb);
+        std::cout << "  Perfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::subjunctive, bibliotheca::Voice::active, bibliotheca::Tense::perfect, "   ", " ", verb);
+        std::cout << "  Imperfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::subjunctive, bibliotheca::Voice::active, bibliotheca::Tense::imperfect, "   ", " ", verb);
+        std::cout << "  Present:" << std::endl;
+        displayVerb(bibliotheca::Mood::subjunctive, bibliotheca::Voice::active, bibliotheca::Tense::present, "   ", " ", verb);
+        std::cout << " Passive:" << std::endl;
+        std::cout << "  Pluperfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::subjunctive, bibliotheca::Voice::passive, bibliotheca::Tense::pluperfect, "   ", " ", verb);
+        std::cout << "  Perfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::subjunctive, bibliotheca::Voice::passive, bibliotheca::Tense::perfect, "   ", " ", verb);
+        std::cout << "  Imperfect:" << std::endl;
+        displayVerb(bibliotheca::Mood::subjunctive, bibliotheca::Voice::passive, bibliotheca::Tense::imperfect, "   ", " ", verb);
+        std::cout << "  Present:" << std::endl;
+        displayVerb(bibliotheca::Mood::subjunctive, bibliotheca::Voice::passive, bibliotheca::Tense::present, "   ", " ", verb);
     }
 }

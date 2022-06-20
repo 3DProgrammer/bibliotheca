@@ -28,6 +28,52 @@ std::string imperfectEsse(bibliotheca::Number number, int person) {
     }
     return "";
 }
+std::string subjunctiveEsse(bibliotheca::Number number, int person) {
+    if (number == bibliotheca::Number::singular) {
+        switch (person) {
+            case 1:
+                return "sim";
+            case 2:
+                return "sis";
+            case 3:
+                return "sit";
+        }
+    }
+    else if (number == bibliotheca::Number::plural) {
+        switch (person) {
+            case 1:
+                return "simus";
+            case 2:
+                return "sitis";
+            case 3:
+                return "sint";
+        }
+    }
+    return "";
+}
+std::string imperfectSubjunctiveEsse(bibliotheca::Number number, int person) {
+    if (number == bibliotheca::Number::singular) {
+        switch (person) {
+            case 1:
+                return "essem";
+            case 2:
+                return "esses";
+            case 3:
+                return "esset";
+        }
+    }
+    else if (number == bibliotheca::Number::plural) {
+        switch (person) {
+            case 1:
+                return "essemus";
+            case 2:
+                return "essetis";
+            case 3:
+                return "essent";
+        }
+    }
+    return "";
+}
 std::string presentEsse(bibliotheca::Number number, int person) {
     if (number == bibliotheca::Number::singular) {
         switch (person) {
@@ -471,7 +517,7 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
             }
             else if (tense == Tense::futureperfect) {
                 std::string stem = spelling[2];
-                stem.resize(stem.size()-4);
+                stem.resize(stem.size() - 4);
                 if (number == Number::plural) {
                     stem.resize(stem.size() - 2);
                     stem += 'i';
@@ -511,6 +557,50 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
             }
         }
         else if (mood == Mood::subjunctive) {
+            if (tense == Tense::pluperfect) {
+                std::string stem=spelling[2];
+                stem.resize(stem.size()-4);
+                return stem+" "+ imperfectSubjunctiveEsse(number,person);
+            }
+            else if (tense == Tense::perfect) {
+                std::string stem=spelling[2];
+                stem.resize(stem.size()-4);
+                return stem+" "+ subjunctiveEsse(number,person);
+            }
+            else if (tense == Tense::imperfect) {
+                std::string stem = spelling[1];
+                if (conjugation==3) {
+                    stem.resize(stem.size()-1);
+                    stem+="ere";
+                }
+                else {
+                    stem[stem.size()-1]='e';
+                }
+                return stem+ passiveEndings(number,person);
+            }
+            else if (tense == Tense::present) {
+                std::string stem = spelling[1];
+                if (conjugation==3) {
+                    stem.resize(stem.size()-1);
+                    stem+="ere";
+                }
+                else {
+                    stem[stem.size()-1]='e';
+                }
+                if (conjugation==1) {
+                    stem.resize(stem.size()-3);
+                    stem+='e';
+                }
+                if (conjugation==2||conjugation==4) {
+                    stem.resize(stem.size()-2);
+                    stem+='a';
+                }
+                if (conjugation==3) {
+                    stem.resize(stem.size()-3);
+                    stem+='a';
+                }
+                return stem+ passiveEndings(number, person);
+            }
         }
     }
     else {
@@ -594,6 +684,33 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
                 }
             }
             else if (mood == Mood::subjunctive) {
+                if (tense == Tense::pluperfect) {
+                    return spelling[2] + "sse" + standardVerbEndings(number, person, false);
+                }
+                else if (tense == Tense::perfect) {
+                    std::string stem = spelling[2];
+                    stem.resize(stem.size() - 1);
+                    return stem + "eri" + standardVerbEndings(number, person, false);
+                }
+                else if (tense == Tense::imperfect) {
+                    return spelling[1] + standardVerbEndings(number, person, false);
+                }
+                else if (tense == Tense::present) {
+                    std::string stem = spelling[1];
+                    if (conjugation==1) {
+                        stem.resize(stem.size()-3);
+                        stem+='e';
+                    }
+                    if (conjugation==2||conjugation==4) {
+                        stem.resize(stem.size()-2);
+                        stem+='a';
+                    }
+                    if (conjugation==3) {
+                        stem.resize(stem.size()-3);
+                        stem+='a';
+                    }
+                    return stem+ standardVerbEndings(number, person,false);
+                }
             }
         }
         else if (voice == Voice::passive) {
@@ -714,6 +831,31 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
                 }
             }
             else if (mood == Mood::subjunctive) {
+                if (tense == Tense::pluperfect) {
+                    return spelling[3]+" "+ imperfectSubjunctiveEsse(number,person);
+                }
+                else if (tense == Tense::perfect) {
+                    return spelling[3]+" "+ subjunctiveEsse(number,person);
+                }
+                else if (tense == Tense::imperfect) {
+                    return spelling[1]+ passiveEndings(number,person);
+                }
+                else if (tense == Tense::present) {
+                    std::string stem = spelling[1];
+                    if (conjugation==1) {
+                        stem.resize(stem.size()-3);
+                        stem+='e';
+                    }
+                    if (conjugation==2||conjugation==4) {
+                        stem.resize(stem.size()-2);
+                        stem+='a';
+                    }
+                    if (conjugation==3) {
+                        stem.resize(stem.size()-3);
+                        stem+='a';
+                    }
+                    return stem+ passiveEndings(number, person);
+                }
             }
         }
     }

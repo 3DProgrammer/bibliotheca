@@ -390,16 +390,93 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
     if (deponent) {
         if (mood == Mood::indicative) {
             if (tense == Tense::pluperfect) {
+                std::string stem = spelling[2];//TODO: Inflect for number and gender.
+                stem.resize(stem.size() - 4);  //Remove " sum"
+                if (number == Number::plural) {
+                    stem.resize(stem.size() - 1);
+                    stem[stem.size() - 1] = 'i';
+                }
+                return stem + " " + imperfectEsse(number, person);
             }
             else if (tense == Tense::perfect) {
+                std::string stem = spelling[2];//TODO: Inflect for number and gender.
+                stem.resize(stem.size() - 4);  //Remove " sum"
+                if (number == Number::plural) {
+                    stem.resize(stem.size() - 1);
+                    stem[stem.size() - 1] = 'i';
+                }
+                return stem + " " + presentEsse(number, person);
             }
             else if (tense == Tense::imperfect) {
+                std::string stem = spelling[1];
+                if (conjugation == 3) {
+                    stem[stem.size() - 1] = 'e';
+                }
+                else {
+                    stem.resize(stem.size() - 2);
+                }
+                return stem + "ba" + passiveEndings(number, person);
             }
             else if (tense == Tense::present) {
+                if (number == Number::singular && person == 1) {
+                    return spelling[0];
+                }
+                else {
+                    if (conjugation == 3) {
+                        std::string stem = spelling[1];
+                        stem.resize(stem.size() - 1);
+                        if (number == Number::singular && person == 2) {
+                            stem += "e";
+                        }
+                        else if (number == Number::plural && person == 3) {
+                            stem += "u";
+                        }
+                        else {
+                            stem += "i";
+                        }
+                        return stem + passiveEndings(number, person);
+                    }
+                    else {
+                        std::string stem = spelling[1];
+                        stem.resize(stem.size() - 2);
+                        if (conjugation == 4 && person == 3 && number == Number::plural) {
+                            stem = stem + "u";
+                        }
+                        return stem + passiveEndings(number, person);
+                    }
+                }
             }
             else if (tense == Tense::future) {
+                if (conjugation < 3) {
+                    std::string stem = spelling[1];
+                    stem.resize(stem.size() - 2);
+                    return stem + futurePassiveFirstSecondPresuffixes(number, person) + passiveEndings(number, person);
+                }
+                else {
+                    std::string stem = spelling[1];
+                    if (conjugation == 3) {
+                        stem.resize(stem.size() - 1);
+                    }
+                    else {
+                        stem.resize(stem.size() - 2);
+                    }
+                    if (number == Number::singular && person == 1) {
+                        stem += 'a';
+                    }
+                    else {
+                        stem += 'e';
+                    }
+                    return stem + passiveEndings(number, person);
+                }
             }
             else if (tense == Tense::futureperfect) {
+                std::string stem = spelling[2];
+                stem.resize(stem.size()-4);
+                if (number == Number::plural) {
+                    stem.resize(stem.size() - 2);
+                    stem += 'i';
+                }
+                return stem + " " + futureEsse(number, person);
             }
         }
         else if (mood == Mood::imperative) {
@@ -522,25 +599,25 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
         else if (voice == Voice::passive) {
             if (mood == Mood::indicative) {
                 if (tense == Tense::pluperfect) {
-                    std::string stem=spelling[3]; //TODO: Inflect for number and gender.
-                    if (number==Number::plural) {
-                        stem.resize(stem.size()-1);
-                        stem[stem.size()-1]='i';
+                    std::string stem = spelling[3];//TODO: Inflect for number and gender.
+                    if (number == Number::plural) {
+                        stem.resize(stem.size() - 1);
+                        stem[stem.size() - 1] = 'i';
                     }
-                    return stem+" "+ imperfectEsse(number,person);
+                    return stem + " " + imperfectEsse(number, person);
                 }
                 else if (tense == Tense::perfect) {
-                    std::string stem=spelling[3]; //TODO: Inflect for number and gender.
-                    if (number==Number::plural) {
-                        stem.resize(stem.size()-1);
-                        stem[stem.size()-1]='i';
+                    std::string stem = spelling[3];//TODO: Inflect for number and gender.
+                    if (number == Number::plural) {
+                        stem.resize(stem.size() - 1);
+                        stem[stem.size() - 1] = 'i';
                     }
-                    return stem+" "+ presentEsse(number,person);
+                    return stem + " " + presentEsse(number, person);
                 }
                 else if (tense == Tense::imperfect) {
-                    std::string stem=spelling[1];
-                    stem.resize(stem.size()-2);
-                    return stem+"ba"+ passiveEndings(number,person);
+                    std::string stem = spelling[1];
+                    stem.resize(stem.size() - 2);
+                    return stem + "ba" + passiveEndings(number, person);
                 }
                 else if (tense == Tense::present) {
                     if (number == Number::singular && person == 1) {
@@ -564,38 +641,38 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
                         else {
                             std::string stem = spelling[1];
                             stem.resize(stem.size() - 2);
-                            if (conjugation==4&&person==3&&number==Number::plural) {
-                                stem=stem+"u";
+                            if (conjugation == 4 && person == 3 && number == Number::plural) {
+                                stem = stem + "u";
                             }
                             return stem + passiveEndings(number, person);
                         }
                     }
                 }
                 else if (tense == Tense::future) {
-                    if (conjugation<3) {
-                        std::string stem=spelling[1];
-                        stem.resize(stem.size()-2);
-                        return stem+futurePassiveFirstSecondPresuffixes(number,person)+passiveEndings(number,person);
+                    if (conjugation < 3) {
+                        std::string stem = spelling[1];
+                        stem.resize(stem.size() - 2);
+                        return stem + futurePassiveFirstSecondPresuffixes(number, person) + passiveEndings(number, person);
                     }
                     else {
-                        std::string stem=spelling[1];
-                        stem.resize(stem.size()-2);
-                        if (number==Number::singular&&person==1) {
-                            stem+='a';
+                        std::string stem = spelling[1];
+                        stem.resize(stem.size() - 2);
+                        if (number == Number::singular && person == 1) {
+                            stem += 'a';
                         }
-                        else if (conjugation==4) {
-                            stem+='e';
+                        else if (conjugation == 4) {
+                            stem += 'e';
                         }
-                        return stem+passiveEndings(number,person);
+                        return stem + passiveEndings(number, person);
                     }
                 }
                 else if (tense == Tense::futureperfect) {
-                    std::string stem=spelling[3];
-                    if (number==Number::plural) {
-                        stem.resize(stem.size()-2);
-                        stem+='i';
+                    std::string stem = spelling[3];
+                    if (number == Number::plural) {
+                        stem.resize(stem.size() - 2);
+                        stem += 'i';
                     }
-                    return stem+" "+ futureEsse(number,person);
+                    return stem + " " + futureEsse(number, person);
                 }
             }
             else if (mood == Mood::imperative) {

@@ -2,25 +2,26 @@
 // Created by miles on 11/6/22.
 //
 
+#include "word.h"
 #include <bibliotheca.h>
 #include <map>
-#include "word.h"
 
-std::map<std::pair<bibliotheca::Case, bibliotheca::Number>, std::string> endings[5] = { //TODO: Macrons.
-        {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, "a"},  {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "am"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "ae"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "ae"}, {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "a"},
-                {{bibliotheca::Case::nom, bibliotheca::Number::plural}, "ae"}, {{bibliotheca::Case::acc, bibliotheca::Number::plural}, "as"}, {{bibliotheca::Case::gen, bibliotheca::Number::plural}, "arum"}, {{bibliotheca::Case::dat, bibliotheca::Number::plural}, "is"},   {{bibliotheca::Case::abl, bibliotheca::Number::plural}, "is"}},
+std::map<std::pair<bibliotheca::Case, bibliotheca::Number>, std::string> endings[5] = {
+        //TODO: Macrons.
+        {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, "a"}, {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "am"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "ae"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "ae"}, {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "a"}, {{bibliotheca::Case::nom, bibliotheca::Number::plural}, "ae"}, {{bibliotheca::Case::acc, bibliotheca::Number::plural}, "as"}, {{bibliotheca::Case::gen, bibliotheca::Number::plural}, "arum"}, {{bibliotheca::Case::dat, bibliotheca::Number::plural}, "is"}, {{bibliotheca::Case::abl, bibliotheca::Number::plural}, "is"}},
 
-        {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, "us"}, {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "um"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "i"},  {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "o"},  {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "o"},
-                {{bibliotheca::Case::nom, bibliotheca::Number::plural}, "i"},  {{bibliotheca::Case::acc, bibliotheca::Number::plural}, "os"}, {{bibliotheca::Case::gen, bibliotheca::Number::plural}, "orum"}, {{bibliotheca::Case::dat, bibliotheca::Number::plural}, "is"},   {{bibliotheca::Case::abl, bibliotheca::Number::plural}, "is"}},
+        {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, "us"}, {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "um"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "i"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "o"}, {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "o"}, {{bibliotheca::Case::nom, bibliotheca::Number::plural}, "i"}, {{bibliotheca::Case::acc, bibliotheca::Number::plural}, "os"}, {{bibliotheca::Case::gen, bibliotheca::Number::plural}, "orum"}, {{bibliotheca::Case::dat, bibliotheca::Number::plural}, "is"}, {{bibliotheca::Case::abl, bibliotheca::Number::plural}, "is"}},
 
-        {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, ""},   {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "em"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "is"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "i"},  {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "e"},
-                {{bibliotheca::Case::nom, bibliotheca::Number::plural}, "es"}, {{bibliotheca::Case::acc, bibliotheca::Number::plural}, "es"}, {{bibliotheca::Case::gen, bibliotheca::Number::plural}, "um"},   {{bibliotheca::Case::dat, bibliotheca::Number::plural}, "ibus"}, {{bibliotheca::Case::abl, bibliotheca::Number::plural}, "ibus"}},
+        {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, ""}, {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "em"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "is"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "i"}, {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "e"}, {{bibliotheca::Case::nom, bibliotheca::Number::plural}, "es"}, {{bibliotheca::Case::acc, bibliotheca::Number::plural}, "es"}, {{bibliotheca::Case::gen, bibliotheca::Number::plural}, "um"}, {{bibliotheca::Case::dat, bibliotheca::Number::plural}, "ibus"}, {{bibliotheca::Case::abl, bibliotheca::Number::plural}, "ibus"}},
 
-        {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, "us"}, {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "um"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "us"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "ui"}, {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "u"}, //TODO: 4th dec neuter.
-                {{bibliotheca::Case::nom, bibliotheca::Number::plural}, "us"}, {{bibliotheca::Case::acc, bibliotheca::Number::plural}, "us"}, {{bibliotheca::Case::gen, bibliotheca::Number::plural}, "uum"},  {{bibliotheca::Case::dat, bibliotheca::Number::plural}, "ibus"}, {{bibliotheca::Case::abl, bibliotheca::Number::plural}, "ibus"}},
+        {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, "us"}, {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "um"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "us"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "ui"}, {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "u"},//TODO: 4th dec neuter.
+         {{bibliotheca::Case::nom, bibliotheca::Number::plural}, "us"},
+         {{bibliotheca::Case::acc, bibliotheca::Number::plural}, "us"},
+         {{bibliotheca::Case::gen, bibliotheca::Number::plural}, "uum"},
+         {{bibliotheca::Case::dat, bibliotheca::Number::plural}, "ibus"},
+         {{bibliotheca::Case::abl, bibliotheca::Number::plural}, "ibus"}},
 
-        {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, "es"}, {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "em"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "ei"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "ei"}, {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "e"},
-                {{bibliotheca::Case::nom, bibliotheca::Number::plural}, "es"}, {{bibliotheca::Case::acc, bibliotheca::Number::plural}, "es"}, {{bibliotheca::Case::gen, bibliotheca::Number::plural}, "erum"}, {{bibliotheca::Case::dat, bibliotheca::Number::plural}, "ebus"}, {{bibliotheca::Case::abl, bibliotheca::Number::plural}, "ebus"}},
+        {{{bibliotheca::Case::nom, bibliotheca::Number::singular}, "es"}, {{bibliotheca::Case::acc, bibliotheca::Number::singular}, "em"}, {{bibliotheca::Case::gen, bibliotheca::Number::singular}, "ei"}, {{bibliotheca::Case::dat, bibliotheca::Number::singular}, "ei"}, {{bibliotheca::Case::abl, bibliotheca::Number::singular}, "e"}, {{bibliotheca::Case::nom, bibliotheca::Number::plural}, "es"}, {{bibliotheca::Case::acc, bibliotheca::Number::plural}, "es"}, {{bibliotheca::Case::gen, bibliotheca::Number::plural}, "erum"}, {{bibliotheca::Case::dat, bibliotheca::Number::plural}, "ebus"}, {{bibliotheca::Case::abl, bibliotheca::Number::plural}, "ebus"}},
 };
 
 std::string bibliotheca::Noun::noun(bibliotheca::Case nounCase, bibliotheca::Number number) {
@@ -31,18 +32,19 @@ std::string bibliotheca::Noun::noun(bibliotheca::Case nounCase, bibliotheca::Num
         (nounCase == Case::nom || nounCase == Case::acc || nounCase == Case::voc)) {
         return stem + "a";
     }
-    if (gender==Gender::n && number == Number::singular && (nounCase == Case::acc || nounCase == Case::voc)&&declension==3) {
+    if (gender == Gender::n && number == Number::singular && (nounCase == Case::acc || nounCase == Case::voc) &&
+        declension == 3) {
         return spelling[0];
     }
-    if (gender==Gender::n && number == Number::singular && (nounCase == Case::acc || nounCase == Case::voc)) {
-        return stem+endings[declension-1][{Case::acc, Number::singular}];
+    if (gender == Gender::n && number == Number::singular && (nounCase == Case::acc || nounCase == Case::voc)) {
+        return stem + endings[declension - 1][{Case::acc, Number::singular}];
     }
     if (nounCase == Case::voc) {
-        if (number==Number::plural) {
+        if (number == Number::plural) {
             return noun(Case::nom, Number::plural);
         }
         if (declension == 2 && spelling[0][spelling[0].size() - 3] == 'i' &&
-            spelling[0][spelling[0].size() - 2] == 'u'&&spelling[0][spelling[0].size() - 1] == 's') {
+            spelling[0][spelling[0].size() - 2] == 'u' && spelling[0][spelling[0].size() - 1] == 's') {
             std::string returnValue = spelling[0];
             returnValue.resize(returnValue.size() - 2);
             returnValue[returnValue.size() - 1] = 'i';
@@ -57,7 +59,7 @@ std::string bibliotheca::Noun::noun(bibliotheca::Case nounCase, bibliotheca::Num
         }
         return noun(Case::nom, number);
     }
-    return stem + endings[declension-1][{nounCase, number}];
+    return stem + endings[declension - 1][{nounCase, number}];
 }
 
 std::string bibliotheca::Noun::getEnglish() {
@@ -70,44 +72,45 @@ std::string bibliotheca::Noun::getEnglish() {
 }
 
 std::string bibliotheca::Noun::getLatin() {
-    return spelling[0] + ", " + spelling[1] + " (" + (gender == Gender::m ? "m" : gender == Gender::f ? "f" : "n") +
+    return spelling[0] + ", " + spelling[1] + " (" + (gender == Gender::m ? "m" : gender == Gender::f ? "f"
+                                                                                                      : "n") +
            ")";
 }
 
 bibliotheca::Noun::Noun(const std::string &_nomSing, const std::string &_genSing, bibliotheca::Gender _gender,
                         const bibliotheca::Translations &_english, int _declension) {
-    spelling[0]=_nomSing;
-    spelling[1]=_genSing;
-    gender=_gender;
-    english=_english;
-    declension=_declension;
-    stem=_genSing;
-    stem.resize(stem.size()-endings[declension-1][{Case::gen, Number::singular}].size());
+    spelling[0] = _nomSing;
+    spelling[1] = _genSing;
+    gender = _gender;
+    english = _english;
+    declension = _declension;
+    stem = _genSing;
+    stem.resize(stem.size() - endings[declension - 1][{Case::gen, Number::singular}].size());
 }
 
 bibliotheca::Verb::Verb(bibliotheca::PrincipalParts<4> principalParts, Translations _english) {
-    deponent=false;
-    english=_english;
-    spelling=principalParts;
-    char vowel = principalParts[1][principalParts[1].size()-3];
-    if (vowel=='a') {
-        conjugation=1;
+    deponent = false;
+    english = _english;
+    spelling = principalParts;
+    char vowel = principalParts[1][principalParts[1].size() - 3];
+    if (vowel == 'a') {
+        conjugation = 1;
     }
-    if (vowel=='i') {
-        conjugation=4;
+    if (vowel == 'i') {
+        conjugation = 4;
     }
-    if (vowel=='e') {
-        if (principalParts[0][principalParts[0].size()-2]=='e') {
-            conjugation=2;
+    if (vowel == 'e') {
+        if (principalParts[0][principalParts[0].size() - 2] == 'e') {
+            conjugation = 2;
         }
         else {
-            conjugation=3;
+            conjugation = 3;
         }
     }
 }
 
 std::string bibliotheca::Verb::getLatin() {
-    return spelling[0]+", "+spelling[1]+", "+spelling[2]+", "+spelling[3];
+    return spelling[0] + ", " + spelling[1] + ", " + spelling[2] + ", " + spelling[3];
 }
 
 std::string bibliotheca::Verb::getEnglish() {
@@ -120,28 +123,28 @@ std::string bibliotheca::Verb::getEnglish() {
 }
 
 bibliotheca::Verb::Verb(bibliotheca::PrincipalParts<3> principalParts, bibliotheca::Translations _english) {
-    deponent=true;
-    english=_english;
-    spelling[0]=principalParts[0];
-    spelling[1]=principalParts[1];
-    spelling[2]=principalParts[2];
-    spelling[3]="";
-    if (principalParts[1][principalParts[1].size()-2]=='r') {
-        char vowel=principalParts[1][principalParts[1].size()-3];
+    deponent = true;
+    english = _english;
+    spelling[0] = principalParts[0];
+    spelling[1] = principalParts[1];
+    spelling[2] = principalParts[2];
+    spelling[3] = "";
+    if (principalParts[1][principalParts[1].size() - 2] == 'r') {
+        char vowel = principalParts[1][principalParts[1].size() - 3];
         switch (vowel) {
             case 'a':
-                conjugation=1;
+                conjugation = 1;
                 break;
             case 'e':
-                conjugation=2;
+                conjugation = 2;
                 break;
             case 'i':
-                conjugation=4;
+                conjugation = 4;
                 break;
         }
     }
     else {
-        conjugation=3;
+        conjugation = 3;
     }
 }
 
@@ -155,6 +158,71 @@ bibliotheca::Verb::participle(bibliotheca::Case participleCase, bibliotheca::Gen
 std::string
 bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Tense tense, bibliotheca::Mood mood,
                         bibliotheca::Voice voice) {
-    //TODO: Implement
+    if (deponent) {
+        if (mood == Mood::indicative) {
+        }
+        else if (mood == Mood::imperative) {
+            if (conjugation==3) {
+                std::string result=spelling[1];
+                result.resize(result.size()-1);
+                result+=number==Number::singular?"ere":"imini";
+                return result;
+            }
+            else {
+                std::string result=spelling[1];
+                result.resize(result.size()-2);
+                result+=number==Number::singular?"re":"mini";
+                return result;
+            }
+        }
+        else if (mood == Mood::infinitive) {
+        }
+        else if (mood == Mood::subjunctive) {
+        }
+    }
+    else {
+        if (voice == Voice::active) {
+            if (mood == Mood::indicative) {
+            }
+            else if (mood == Mood::imperative) {
+                std::string result = spelling[1];
+                result.resize(result.size() - 2);
+                if (number == Number::plural) {
+                    result = result + "te";
+                    if (conjugation == 3) {
+                        result[result.size() - 3] = 'i';
+                    }
+                }
+
+                return result;
+            }
+            else if (mood == Mood::infinitive) {
+            }
+            else if (mood == Mood::subjunctive) {
+            }
+        }
+        else if (voice == Voice::passive) {
+            if (mood == Mood::indicative) {
+            }
+            else if (mood == Mood::imperative) {
+                if (number == Number::singular) {
+                    return spelling[1];
+                }
+                else if (number == Number::plural) {
+                    std::string result = spelling[1];
+                    result.resize(result.size() - 2);
+                    if (conjugation == 3) {
+                        result[result.size() - 1] = 'i';
+                    }
+                    result += "mini";
+                    return result;
+                }
+            }
+            else if (mood == Mood::infinitive) {
+            }
+            else if (mood == Mood::subjunctive) {
+            }
+        }
+    }
     return "";
 }

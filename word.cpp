@@ -501,7 +501,7 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
                 else {
                     std::string stem = spelling[1];
                     if (conjugation == 3) {
-                        stem.resize(stem.size() - 1);
+                        //stem.resize(stem.size() - 1);
                     }
                     else {
                         stem.resize(stem.size() - 2);
@@ -783,6 +783,9 @@ bibliotheca::Verb::verb(int person, bibliotheca::Number number, bibliotheca::Ten
                         std::string stem = spelling[1];
                         stem.resize(stem.size() - 2);
                         if (number == Number::singular && person == 1) {
+                            if (conjugation==3) {
+                                stem.resize(stem.size()-1);
+                            }
                             stem += 'a';
                         }
                         else if (conjugation == 4) {

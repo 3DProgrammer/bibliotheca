@@ -46,14 +46,14 @@ int main() {
     //                  << word.noun(aCase, aNumber) << std::endl;
     //    }
     std::vector<bibliotheca::Verb> verbs;
-    verbs.push_back(bibliotheca::Verb({"ambulo", "ambulare", "ambulavi", "ambulatus"}, {"walk"}));
-    verbs.push_back(bibliotheca::Verb({"habeo", "habere", "habui", "habitum"}, {"have", "own"}));
-    verbs.push_back(bibliotheca::Verb({"cognosco", "cognoscere", "cognovi", "cognitus"}, {"know", "understand"}));
-    verbs.push_back(bibliotheca::Verb({"audio", "audire", "audivi", "auditus"}, {"hear"}));
+    //verbs.push_back(bibliotheca::Verb({"ambulo", "ambulare", "ambulavi", "ambulatus"}, {"walk"}));
+    //verbs.push_back(bibliotheca::Verb({"habeo", "habere", "habui", "habitum"}, {"have", "own"}));
+    //verbs.push_back(bibliotheca::Verb({"cognosco", "cognoscere", "cognovi", "cognitus"}, {"know", "understand"}));
+    //verbs.push_back(bibliotheca::Verb({"audio", "audire", "audivi", "auditus"}, {"hear"}));
     verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"ingredior", "ingredi", "ingressus sum"}), {"enter"}));
-    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"miror", "mirari", "miratus sum"}), {"admire"}));
-    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"vereor", "vereri", "veritus sum"}), {"fear"}));
-    verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"partior", "partiri", "partitus sum"}), {"share"}));
+    //verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"miror", "mirari", "miratus sum"}), {"admire"}));
+    //verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"vereor", "vereri", "veritus sum"}), {"fear"}));
+    //verbs.push_back(bibliotheca::Verb(std::array<std::string, 3>({"partior", "partiri", "partitus sum"}), {"share"}));
     for (auto verb: verbs) {
         std::cout << "--------------------------------------------------" << std::endl;
         std::cout << verb.getLatin() << " is conjugation " << verb.conjugation << std::endl;
